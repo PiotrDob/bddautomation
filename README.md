@@ -1,2 +1,3 @@
 # bddautomation
-Selenium | Selenide | Cucumber | BDD 
+
+Sample project using: Selenium | Selenide | Cucumber | BDD 
