@@ -8,6 +8,6 @@ public class GlobalDefinitions {
     protected static final String HEADLESS = System.getProperty("headless", "false");
     protected static final String BROWSER = System.getProperty("browser", "chrome");
     public static final Logger LOGGER = Logger.getLogger(GlobalDefinitions.class);
-
+    public static final String NBP_EXCHANGE_EXCHANGE_RATES_A = "https://api.nbp.pl/api/exchangerates/tables/A";
 
 }

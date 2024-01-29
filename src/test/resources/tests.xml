@@ -4,7 +4,7 @@
 <suite name="Suite" parallel="classes" thread-count="1">
     <test name="Test">
         <classes>
-            <class name="runners.Runner"></class>
+            <class name="runners.SeleniumRunner"></class>
         </classes>
     </test>
 </suite>

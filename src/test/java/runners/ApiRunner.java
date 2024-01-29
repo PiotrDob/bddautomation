@@ -6,13 +6,13 @@ import io.cucumber.testng.CucumberOptions;
 
 
 @CucumberOptions(
-        features ="classpath:features"
-        ,glue = {"tests"}
+        features ="classpath:restApi"
+        ,glue = {"tests/restApi"}
         ,plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
         ,monochrome = true
         ,publish = false
 
 )
-public class Runner extends AbstractTestNGCucumberTests {
+public class ApiRunner extends AbstractTestNGCucumberTests {
 
 }

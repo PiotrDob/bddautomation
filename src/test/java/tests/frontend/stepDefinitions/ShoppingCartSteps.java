@@ -1,4 +1,4 @@
-package tests.stepDefinitions;
+package tests.frontend.stepDefinitions;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
