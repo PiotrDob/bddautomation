@@ -9,7 +9,9 @@ import utils.SessionObjects;
 import utils.models.ExchangeRate;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ExchangeRateStepDefinitions {
 
@@ -44,7 +46,8 @@ public class ExchangeRateStepDefinitions {
            exchangeRate.setCurrency(((HashMap) e).get("currency").toString());
            exchangeRate.setMid(BigDecimal.valueOf(Double.valueOf(String.valueOf(((HashMap) e).get("mid")))));
           });
-  System.out.println("Code: " + exchangeRate.getCode() + "; Currency: " + exchangeRate.getCurrency() + "; Mid: "+ exchangeRate.getMid().toString() + ";");
+     System.out.println("\nExchange rate for CurrencyCode " + string);
+     System.out.println(exchangeRate.toString());
   // TODO ADD PRETTY PRINT VALUES TO REPORT FORM ExchangeRate OBJECT
  }
 
@@ -63,18 +66,56 @@ public class ExchangeRateStepDefinitions {
            exchangeRate.setCurrency(((HashMap) e).get("currency").toString());
            exchangeRate.setMid(BigDecimal.valueOf(Double.valueOf(String.valueOf(((HashMap) e).get("mid")))));
           });
-  System.out.println("Code: " + exchangeRate.getCode() + "; Currency: " + exchangeRate.getCurrency() + "; Mid: "+ exchangeRate.getMid().toString() + ";");
+     System.out.println("\nExchange rate for CurrencyName " + string);
+     System.out.println(exchangeRate.toString());
   // TODO ADD PRETTY PRINT VALUES TO REPORT FORM ExchangeRate OBJECT
  }
 
  @Then("I'm want to get exchange rates above {int}")
  public void i_m_want_to_get_exchange_rates_above(Integer int1) {
-  // TODO OUT OF THE TIME, BUT STREAM LIKE BEFORE
+     List<ExchangeRate> exchangeRateList = new ArrayList<>();
+     ((JSONArray) SessionObjects.getRatesList())
+             .toList()
+             .stream()
+             .filter(e -> Double.valueOf(((HashMap) e)
+                     .get("mid")
+                     .toString()) > int1)
+             .forEach(e -> {
+                 String code = (((HashMap) e).get("code").toString());
+                 String currency = (((HashMap) e).get("currency").toString());
+                 BigDecimal mid = (BigDecimal.valueOf(Double.valueOf(String.valueOf(((HashMap) e).get("mid")))));
+                 exchangeRateList.add(new ExchangeRate()
+                         .setCode(code)
+                         .setCurrency(currency)
+                         .setMid(mid));
+             });
+     System.out.println("\nExchange rate rates above " + int1);
+     for (ExchangeRate e : exchangeRateList)
+         System.out.println(e.toString());
+     // TODO ADD PRETTY PRINT VALUES TO REPORT FORM ExchangeRate OBJECT
  }
 
  @Then("I'm want to get exchange rates below {int}")
  public void i_m_want_to_get_exchange_rates_below(Integer int1) {
-  // TODO OUT OF THE TIME, BUT STREAM LIKE BEFORE
+     List<ExchangeRate> exchangeRateList = new ArrayList<>();
+     ((JSONArray) SessionObjects.getRatesList())
+             .toList()
+             .stream()
+             .filter(e -> Double.valueOf(((HashMap) e)
+                     .get("mid")
+                     .toString()) < int1)
+             .forEach(e -> {
+                 String code = (((HashMap) e).get("code").toString());
+                 String currency = (((HashMap) e).get("currency").toString());
+                 BigDecimal mid = (BigDecimal.valueOf(Double.valueOf(String.valueOf(((HashMap) e).get("mid")))));
+                 exchangeRateList.add(new ExchangeRate()
+                         .setCode(code)
+                         .setCurrency(currency)
+                         .setMid(mid));
+             });
+     System.out.println("\nExchange rate rates below " + int1);
+     for (ExchangeRate e : exchangeRateList)
+         System.out.println(e.toString());
  }
 
 }

@@ -40,4 +40,9 @@ public class ExchangeRate {
         return this;
     }
 
+    @Override
+    public String toString() {
+        return "Code: " + this.code + " | Currency: " + this.currency + " | Mid: " + this.mid;
+    }
+
 }
