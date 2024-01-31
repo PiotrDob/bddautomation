@@ -45,4 +45,11 @@ public class ExchangeRate {
         return "Code: " + this.code + " | Currency: " + this.currency + " | Mid: " + this.mid;
     }
 
+    public boolean isNull(){
+        if (this.mid == null || this.currency == null || this.code == null)
+            return true;
+        else
+            return false;
+    }
+
 }

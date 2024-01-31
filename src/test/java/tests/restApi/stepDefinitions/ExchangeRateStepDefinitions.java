@@ -4,6 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.json.JSONArray;
+import org.testng.Assert;
 import utils.RestApi;
 import utils.SessionObjects;
 import utils.models.ExchangeRate;
@@ -46,8 +47,9 @@ public class ExchangeRateStepDefinitions {
            exchangeRate.setCurrency(((HashMap) e).get("currency").toString());
            exchangeRate.setMid(BigDecimal.valueOf(Double.valueOf(String.valueOf(((HashMap) e).get("mid")))));
           });
-     System.out.println("\nExchange rate for CurrencyCode " + string);
-     System.out.println(exchangeRate.toString());
+  Assert.assertFalse(exchangeRate.isNull(), "Cannot find currency code ='" + string + "' in rates list");
+  System.out.println("\nExchange rate for CurrencyCode " + string);
+  System.out.println(exchangeRate.toString());
   // TODO ADD PRETTY PRINT VALUES TO REPORT FORM ExchangeRate OBJECT
  }
 
@@ -66,6 +68,7 @@ public class ExchangeRateStepDefinitions {
            exchangeRate.setCurrency(((HashMap) e).get("currency").toString());
            exchangeRate.setMid(BigDecimal.valueOf(Double.valueOf(String.valueOf(((HashMap) e).get("mid")))));
           });
+     Assert.assertFalse(exchangeRate.isNull(), "Cannot find currency name ='" + string + "' in rates list");
      System.out.println("\nExchange rate for CurrencyName " + string);
      System.out.println(exchangeRate.toString());
   // TODO ADD PRETTY PRINT VALUES TO REPORT FORM ExchangeRate OBJECT
@@ -89,6 +92,7 @@ public class ExchangeRateStepDefinitions {
                          .setCurrency(currency)
                          .setMid(mid));
              });
+     Assert.assertFalse(exchangeRateList.isEmpty(), "Cannot find currencies above '" + int1 + "' in rates list");
      System.out.println("\nExchange rate rates above " + int1);
      for (ExchangeRate e : exchangeRateList)
          System.out.println(e.toString());
@@ -113,6 +117,7 @@ public class ExchangeRateStepDefinitions {
                          .setCurrency(currency)
                          .setMid(mid));
              });
+     Assert.assertFalse(exchangeRateList.isEmpty(), "Cannot find currencies below '" + int1 + "' in rates list");
      System.out.println("\nExchange rate rates below " + int1);
      for (ExchangeRate e : exchangeRateList)
          System.out.println(e.toString());
